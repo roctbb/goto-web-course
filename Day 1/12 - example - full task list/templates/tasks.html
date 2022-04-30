@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задания для спортсмена</title>
+
+    <style>
+        .center {
+            text-align: center;
+            list-style-position: inside;
+            padding-inline-start: 0;
+        }
+    </style>
+</head>
+<body>
+
+<p style="text-align: center;"><img style="height: 300px;" src="/static/durov.png"/>
+</p>
+
+<h3 style="text-align: center;">Список дел</h3>
+
+<p class="center"><progress value="{{ done_count}}" max="{{ count }}">60%</progress></p>
+
+<ol class="center">
+    {% for task in tasks %}
+        {% if task['is_done'] %}
+            <li><strike>{{ task['name'] }}</strike> <small><a href="/tasks/{{ loop.index0 }}/undone">Не выполнено</a> <a href="/tasks/{{ loop.index0 }}/edit">Изменить</a> <a href="/tasks/{{ loop.index0 }}/delete">Удалить</a></small><br>
+                <small>{{ task['description'] }}</small>
+            </li>
+        {% else %}
+            <li>{{ task['name'] }} <small><a href="/tasks/{{ loop.index0 }}/done">Выполнено</a> <a href="/tasks/{{ loop.index0 }}/edit">Изменить</a> <a href="/tasks/{{ loop.index0 }}/delete">Удалить</a></small><br>
+            <small>{{ task['description'] }}</small></li>
+        {% endif %}
+    {% endfor %}
+</ol>
+
+<form action="/tasks/add" method="post">
+    <p class="center"><input name="task_name" type="text" /><button>Добавить</button></p>
+    <p class="center"><textarea name="task_description" placeholder="Описание"></textarea></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задания для спортсмена</title>
+
+    <style>
+        .center {
+            text-align: center;
+            list-style-position: inside;
+            padding-inline-start: 0;
+        }
+    </style>
+</head>
+<body>
+
+<p style="text-align: center;"><img style="height: 300px;" src="/static/durov.png"/>
+</p>
+
+<h3 style="text-align: center;">Изменение задачи</h3>
+
+<form action="/tasks/{{ task_id }}/edit" method="post">
+    <p class="center"><input name="task_name" type="text" value="{{ task['name'] }}" /><button>Сохранить</button></p>
+    <p class="center"><textarea name="task_description" placeholder="Описание">{{ task['description'] }}</textarea></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задания для спортсмена</title>
+    <style>
+        .center {
+            text-align: center;
+            list-style-position: inside;
+            padding-inline-start: 0;
+        }
+    </style>
+</head>
+<body>
+
+<p style="text-align: center;"><img style="height: 300px;" src="/static/durov.png"/>
+</p>
+
+<h3 style="text-align: center;">Список дел</h3>
+
+<ol class="center">
+    {% for task in tasks %}
+        {% if task['is_done'] %}
+            <li><strike>{{ task['name'] }}</strike></li>
+        {% else %}
+            <li>{{ task['name'] }}</li>
+        {% endif %}
+    {% endfor %}
+</ol>
+
+</body>
+</html>

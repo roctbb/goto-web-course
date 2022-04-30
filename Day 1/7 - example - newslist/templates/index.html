@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Актуальные новости</title>
+</head>
+<body>
+
+<h1>Актуально сегодня...</h1>
+
+<ul>
+    {% for topic in news %}
+        <li><a href="/news/{{ loop.index0 }}" target="_blank">{{ topic['name'] }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>
