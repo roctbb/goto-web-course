@@ -13,11 +13,16 @@
 </head>
 <body>
 
-<p style="text-align: center;"><img style="height: 300px;" src="/static/durov.png"/>
+<p style="text-align: center;">
+    <!-- Чтобы не подгружать картинки с других сайтов, можем хранить ее у себя, положив в папку static (из других папок работать не будет) -->
+    <img style="height: 300px;" src="/static/durov.png"/>
 </p>
 
 <h3 style="text-align: center;">Список дел</h3>
 
+<!-- Можно не только перебирать списки, но и образаться к словарям, а еще использовать условные операторы
+     Подробнее про шаблоны во Flask: https://jinja.palletsprojects.com/en/3.1.x/
+ -->
 <ol class="center">
     {% for task in tasks %}
         {% if task['is_done'] %}

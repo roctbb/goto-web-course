@@ -26,12 +26,15 @@ news = [
 def index():
     return render_template('index.html', news=news)
 
-
+# Чтобы посмотреть конкретную новость, будем передавать ее номер в списке после адреса, вот так /news/НОМЕР
+# С помощью <int:id> мы показываем фласку, что ожидаем в этом месте число id, он сам его увидит и передаст в качестве параметра в функцию
 @app.route('/news/<int:id>')
 def news_page(id):
+    # Проверяем, что новость существует
     if id < 0 or id >= len(news):
         abort(404)
 
+    # Передаем нужную новость в шаблон
     return render_template('news.html', topic=news[id])
 
 

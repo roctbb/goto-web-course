@@ -30,14 +30,14 @@ def index():
 
 
 @app.route('/category/<int:category_id>')
-def category_page(category):
+def category_page(category_id):
     # TODO: создай шаблон category html, который по аналогии с прошлой версией сайта показывает фанфики, но только из одной категории
     # TODO: передай нужную категорию в этот шаблон
     # TODO: добавь проверку на то, что категория существует
     pass
 
 @app.route('/category/<int:category_id>/fanfic/<fanfic_id>/like')
-def add_like(category):
+def add_like(category_id, fanfic_id):
     # TODO: добавь 1 лайк для выбранного фанфика
     # TODO: верни редирект на страницу категории этого фанфика
     pass

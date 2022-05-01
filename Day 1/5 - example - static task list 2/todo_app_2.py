@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 
+# Чтобы отображать, выполнена ли задача, усложним структуру данных
 tasks = [
     {
         "name": "Пресс качат",
@@ -28,6 +29,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    # И все так же можем передать ее в шаблон
     return render_template("tasks.html", tasks=tasks)
 
 

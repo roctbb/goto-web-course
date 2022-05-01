@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление диска</title>
+</head>
+<body>
+
+<a href="/">Назад</a>
+
+<h2>Добавление диска</h2>
+
+<form method="post" action="/add">
+    <table>
+        <tr>
+            <th>Исполнитель:</th>
+            <td><input type="text" name="artist" /></td>
+        </tr>
+        <tr>
+            <th>Название:</th>
+            <td><input type="text" name="title" /></td>
+        </tr>
+        <tr>
+            <th>Тип:</th>
+            <td>
+                <select name="type">
+                    <option value="CD">CD</option>
+                    <option value="SACD">SACD</option>
+                    <option value="Vinyl">Vinyl</option>
+                </select>
+            </td>
+        </tr>
+
+        <!-- TODO: добавь поля для описания и ссылки на изображение -->
+
+    </table>
+
+    <button>Добавить</button>
+</form>
+
+</body>
+</html>

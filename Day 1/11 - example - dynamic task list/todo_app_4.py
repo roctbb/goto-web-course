@@ -52,10 +52,16 @@ def make_undone(id):
 
     return redirect('/')
 
+# Страница, задача которой - получить данные от пользователя и добавить новую задачу в список
+# Тк она реагирует на POST запрос (запрос с параметрами, запрос с параметрами), добавляем methods=['post']
+# По-умолчанию фласк считает, что methods=['get']
 @app.route('/tasks/add', methods=['post'])
 def add_task():
+    # Чтобы получить приложенные к запросы параметры, используем словарь request.form
+    # В отличие от request.form['task_name'], метод get позволяет нам не получить ошибку, если параметра в запросе нет (он вернет None)
     task_name = request.form.get('task_name')
 
+    # Если имя задачи не пусто
     if task_name:
         tasks.append({
             "name": task_name,

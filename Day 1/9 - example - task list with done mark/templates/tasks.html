@@ -19,14 +19,17 @@
 
 <h3 style="text-align: center;">Список дел</h3>
 
-<p class="center"><progress value="{{ done_count}}" max="{{ count }}">60%</progress></p>
+<!-- Шкала с процентом выполенных задач -->
+<p class="center"><progress value="{{ done_count }}" max="{{ count }}">60%</progress></p>
 
 <ol class="center">
     {% for task in tasks %}
         {% if task['is_done'] %}
+            <!-- Показываем ссылку на страницу, которая отметит задачу невыполенной -->
             <li><strike>{{ task['name'] }}</strike> <small><a href="/tasks/{{ loop.index0 }}/undone">Не выполнено</a></small>
             </li>
         {% else %}
+            <!-- Показываем ссылку на страницу, которая отметит задачу выполенной -->
             <li>{{ task['name'] }} <small><a href="/tasks/{{ loop.index0 }}/done">Выполнено</a></small></li>
         {% endif %}
     {% endfor %}
