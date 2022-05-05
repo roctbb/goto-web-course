@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="question">Кто обитает на дне океана?</h1>
+
+<p id="answer"></p>
+
+<button onclick="showAnswer()">Узнать ответ</button>
+
+<img src="https://s0.rbk.ru/v6_top_pics/media/img/8/32/754598726300328.jpeg" id="pig">
+
+<button onclick="rotate()">Поверни меня</button>
+
+<script>
+    var angle = 0
+    function showAnswer()
+    {
+        document.getElementById("answer").innerHTML = "Спанч Боб!<br><img src='https://assets.gq.ru/photos/5ee71935741d9c666c90d320/16:9/w_2560%2Cc_limit/0.jpg' height='300'/>"
+        document.getElementById("question").style.color = "red"
+    }
+
+    function rotate()
+    {
+        angle += 10
+        document.getElementById("pig").style = 'transform: rotate('+angle+'deg);'
+    }
+
+    var body_angle = 0;
+
+    function rotateBody()
+    {
+        body_angle += 10
+        document.getElementsByTagName('body')[0].style.transform = 'rotate('+body_angle+'deg)'
+        setTimeout(rotateBody, 5000)
+    }
+
+    setTimeout(rotateBody, 1000)
+
+</script>
+
+</body>
+</html>
