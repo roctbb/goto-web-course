@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messenger</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="nickname_page">
+    <h3>Привет!</h3>
+    <p>Введи свой ник: <input type="text" id="nickname"/></p>
+    <button onclick="go_to_messenger()">Вход</button>
+</div>
+
+<div id="messenger_page" style="display: none;">
+    <h3>Сообщения</h3>
+
+    <ul id="messages"></ul>
+
+    <p>Текст сообщения: <input type="text" id="new_message"/></p>
+    <button onclick="send()">Отправить</button>
+</div>
+
+<script>
+    var nickname = "";
+    var last_id = 0;
+
+    function go_to_messenger() {
+        var user_input = document.getElementById("nickname").value;
+
+        if (user_input) {
+            nickname = user_input
+            document.getElementById("nickname_page").style.display = "none";
+            document.getElementById("messenger_page").style.display = "block";
+            update_messages()
+
+        } else {
+            alert("Введи ник")
+        }
+
+        setInterval(function () {
+            update_messages()
+        }, 2000)
+    }
+
+    function update_messages() {
+        axios.get('/api/messages?from=' + last_id)
+            .then(function (response) {
+                // handle success
+                var messages = response.data;
+
+                for (var i = 0; i < messages.length; i++) {
+                    document.getElementById("messages").innerHTML += "<li><strong>" + messages[i].author +
+                        "</strong>: " + messages[i].text + "</li>"
+                }
+
+                last_id += messages.length;
+            })
+    }
+
+    function send() {
+        var text = document.getElementById("new_message").value;
+
+        if (text) {
+            var params = new URLSearchParams();
+            params.append('author', nickname);
+            params.append('text', text);
+            axios.post("/api/messages", params).then(function () {
+                update_messages();
+            })
+        }
+
+    }
+</script>
+
+</body>
+</html>
